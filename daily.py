@@ -7,8 +7,7 @@ client = OctopusEnergyClient()
 
 # Fetch and store usage for the last 100 half hours
 records = client.get_usage(limit=100)
-record_count = 0
-insert_count = 0
+record_count = insert_count = 0
 for record in records.json()["results"]:
     record_count += 1
     if storage.insert_record(record):

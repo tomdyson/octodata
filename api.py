@@ -13,7 +13,7 @@ class OctopusEnergyClient:
         self.base_url = "https://api.octopus.energy/v1/"
 
     def get(self, url):
-        # don't append base URL if it's already there
+        # Append base URL if necessary
         if not url.startswith("https://"):
             url = self.base_url + url
         return requests.get(url, auth=(self.user, ""))

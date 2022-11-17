@@ -9,8 +9,7 @@ client = OctopusEnergyClient()
 
 def fetch_batch(url=None):
     # recursively fetch all records
-    record_count = 0
-    insert_count = 0
+    record_count = insert_count = 0
     if url:
         records = client.get_usage(url=url, limit=100)
     else:
