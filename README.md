@@ -1,7 +1,7 @@
 # Octodata
 
 Tools for getting your Octopus Energy electricity data into a SQLite database,
-for exploration in Datasette.
+for exploration in [Datasette](https://datasette.io).
 
 ## Usage
 
@@ -20,8 +20,8 @@ for exploration in Datasette.
 
 ```sql
 select 
-    sum(usage) as monthly_usage, 
-    strftime("%m-%Y", start_time) as 'month-year'
+    strftime("%m-%Y", start_time) as 'month-year',
+    sum(usage) as monthly_usage
 from readings 
 group by strftime("%m-%Y", start_time);
 ```
@@ -30,8 +30,8 @@ group by strftime("%m-%Y", start_time);
 
 ```sql
 select 
-    avg(usage) as avg_usage, 
-    strftime("%m-%Y", start_time) as 'month-year'
+    strftime("%m-%Y", start_time) as 'month-year',
+    avg(usage) as avg_usage
 from readings 
 group by strftime("%m-%Y", start_time);
 ```
@@ -40,8 +40,8 @@ group by strftime("%m-%Y", start_time);
 
 ```sql
 select 
-    avg(usage) as avg_usage, 
-    strftime("%m-%Y", start_time) as 'month-year'
+    strftime("%m-%Y", start_time) as 'month-year',
+    avg(usage) as avg_usage 
 from readings 
 where strftime("%w", start_time) = "1"
 group by strftime("%m-%Y", start_time);
