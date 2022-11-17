@@ -6,7 +6,7 @@ for exploration in Datasette.
 ## Usage
 
 1. Install the dependencies: `pip install -r requirements.txt`
-2. Find your Octopus key, serial number and MPAN from
+2. Find your API key, serial number and MPAN from
    https://octopus.energy/dashboard/developer/
 3. Rename `.env-example` to `.env` and fill in the details
 4. Fetch all your historic data with `python all.py`. This may take a few
@@ -18,7 +18,7 @@ for exploration in Datasette.
 
 ### Total usage by month
 
-```
+```sql
 select 
     sum(usage) as monthly_usage, 
     strftime("%m-%Y", start_time) as 'month-year'
@@ -28,7 +28,7 @@ group by strftime("%m-%Y", start_time);
 
 ### Average usage per month
 
-```
+```sql
 select 
     avg(usage) as avg_usage, 
     strftime("%m-%Y", start_time) as 'month-year'
@@ -38,7 +38,7 @@ group by strftime("%m-%Y", start_time);
 
 ### Average use on Mondays
 
-```
+```sql
 select 
     avg(usage) as avg_usage, 
     strftime("%m-%Y", start_time) as 'month-year'
@@ -49,7 +49,7 @@ group by strftime("%m-%Y", start_time);
 
 ### Average use per hour:
 
-```
+```sql
 select 
     strftime("%H", start_time) as time,
     avg(usage) as avg_usage 
