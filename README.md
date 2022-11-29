@@ -56,3 +56,28 @@ select
 from readings 
 group by strftime("%H", start_time);
 ```
+
+### Last seven days:
+
+```sql
+select
+  strftime("%Y-%m-%d", start_time) as Date,
+  case
+    cast (strftime('%w', start_time) as integer)
+    when 0 then 'Sunday'
+    when 1 then 'Monday'
+    when 2 then 'Tuesday'
+    when 3 then 'Wednesday'
+    when 4 then 'Thursday'
+    when 5 then 'Friday'
+    else 'Saturday'
+  end as Day,
+  cast(sum(usage) as integer) as Usage
+from
+  readings
+where
+  date(start_time) >
+date('now', '-8 day')
+group by
+  strftime("%Y-%m-%d", start_time);
+```
